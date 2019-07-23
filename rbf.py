@@ -138,7 +138,7 @@ print(false_pos, false_neg, true_pos, true_neg)
 
 C = confusion_matrix(y_test, test_predict)
 
-print(C/ C.astype(np.float).sum(axis=1))
+print(C/C.astype(np.float).sum(axis=1))
 
 
 
