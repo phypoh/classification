@@ -45,10 +45,40 @@ def logistic(x):
 # y: 1d array with the class labels (0 or 1)
 # w: current parameter values
 #
+    
+def log_sigmoid(X, w):
+    dot_prod = np.dot(X, w)
+    output = np.zeros(dot_prod.size)
+    for i in range(len(dot_prod)):
+        if dot_prod[i] < -10**100:
+            output[i] = dot_prod[i]
+            print("estimate")
+        else:
+            output[i] = np.log(logistic(dot_prod[i]))
+    return output
+
+def neg_log_sigmoid(X, w):
+    dot_prod = -np.dot(X, w)
+    output = np.zeros(dot_prod.size)
+    for i in range(len(dot_prod)):
+        if dot_prod[i] > 10**100:
+            output[i] = dot_prod[i]
+            print("estimate")
+        else:
+            output[i] = np.log(logistic(dot_prod[i]))
+    return output
+
 def compute_average_ll(X, y, w):
-    output_prob = logistic(np.dot(X, w))
-    return np.mean(y * np.log(output_prob)
-                   + (1 - y) * np.log(1.0 - output_prob))
+    return np.mean(y * log_sigmoid(X, w)
+                   + (1 - y) * neg_log_sigmoid(X, w))
+
+# =============================================================================
+#     
+# def compute_average_ll(X, y, w):
+#     output_prob = logistic(np.dot(X, w))
+#     return np.mean(y * np.log(output_prob)
+#                    + (1 - y) * np.log(1.0 - output_prob))
+# =============================================================================
 
 ##
 # ll: 1d array with the average likelihood per data point, for each training

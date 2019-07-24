@@ -24,10 +24,10 @@ y_train = []
 X_test = []
 y_test = []
 
-num_of_runs_expanded = 5000
+num_of_runs_expanded = 600
 
-l = 0.01
-eta_expanded = 0.001
+l = 1
+eta_expanded = 0.0001
 
 ll_avg_train = []
 ll_avg_test = []
